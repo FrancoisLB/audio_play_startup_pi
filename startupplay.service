@@ -1,0 +1,10 @@
+[Unit]
+Description=Startup Play
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/etc/startupplay.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Shutdown Play
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/true
+ExecStop=/etc/shutdownplay.sh
+
+[Install]
+WantedBy=multi-user.target

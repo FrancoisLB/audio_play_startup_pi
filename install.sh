@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Installation des services startup_play et shutdown_play."
+echo "Installation of startup_play et shutdown_play services."
 
 # Utiliser grep pour filtrer les lignes contenant "Model"
 model=$(grep Model /proc/cpuinfo)
@@ -9,34 +9,34 @@ model=$(grep Model /proc/cpuinfo)
 version_pi=$(echo "$model" | awk -F': ' '{print $2}')
 
 # Afficher la version du Raspberry Pi
-echo "Version du Raspberry Pi : $version_pi"
+echo "Raspberry Pi version : $version_pi"
 
-echo "Installation de espeak"
+echo "Installation of espeak voice synthesis."
 sudo apt install espeak -y
 
-echo "Création du répertoire /home/pi/audio pour stocker les fichiers audio" 
+echo "Directory création : /home/pi/audio to store audio files (wave format)." 
 mkdir -p /home/pi/audio 
 sudo chmod 777 /home/pi/audio 
 
-echo "Copie des fichiers audio dans ce répertoire" 
+echo "Audio files copy." 
 cp ./audio_fichier_waves/*.wav /home/pi/audio
 
-echo "Copie des fichiers sh dans le répertoire /etc."
+echo "sh files copy in directory : /etc."
 sudo cp *.sh /etc
 sudo chmod +x /etc/shutdownplay.sh
 sudo chmod +x /etc/startupplay.sh
 
-echo "Copie des fichiers de service dans le répertoire /etc/systemd/system."
+echo "service files copy in directory : /etc/systemd/system."
 sudo cp *.service /etc/systemd/system 
 sudo chmod 644 /etc/systemd/system/startupplay.service
 sudo chmod 644 /etc/systemd/system/shutdownplay.service
 
-echo "Activation des services" 
+echo "services activation." 
 sudo systemctl daemon-reload 
 sudo systemctl enable startupplay.service
 sudo systemctl enable shutdownplay.service
 
-echo "Redémarrage des services."
+echo "services restart."
 sudo systemctl restart startupplay.service
 
 echo "Completed."

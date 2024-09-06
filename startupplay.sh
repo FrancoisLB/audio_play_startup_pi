@@ -4,7 +4,12 @@
 /usr/bin/aplay /home/pi/audio/start.wav
 
 # Pause de 0.5 seconde
-sleep 0.5
+sleep 0.3
+
+# nom de la machine 
+espeak -vfr "nom de la machine : $(hostname)"
+
+sleep 0.3 
 
 echo "Détection réseau WIFI : "
 

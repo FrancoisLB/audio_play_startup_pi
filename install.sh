@@ -11,8 +11,19 @@ version_pi=$(echo "$model" | awk -F': ' '{print $2}')
 # Afficher la version du Raspberry Pi
 echo "Raspberry Pi version : $version_pi"
 
+# installation de plusieurs syntheses vocale 
+# installation de espeak 
 echo "Installation of espeak voice synthesis."
 sudo apt install espeak -y
+
+# installation de espeak-ng
+echo "Installation of espeak-ng voice synthesis."
+sudo apt install espeak-ng -y 
+
+# installation de MBrola 
+echo "Installation of MBrola voice synthesis."
+sudo apt install mbrola mbrola-fr1 -y
+
 
 echo "Directory création : /home/pi/audio to store audio files (wave format)." 
 mkdir -p /home/pi/audio 
